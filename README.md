@@ -18,7 +18,7 @@ Finalmente, las referencias cartesianas generadas se transforman en trayectorias
 
 ## Tarea 1: Interpolación Cartesiana
 
-En este ejercicio se solicita la implementación de una función ("PoseInterpolation(start_pose, end_pose, lambda)") que, a partir de una pose inicial y final, calcule una pose intermedia entre estas en función del parámetro $\lambda$: Indica cuánto ha avanzado el movimiento: Será "0" para el incio y "1" para el final de este.
+En este ejercicio se solicita la implementación de la función `PoseInterpolation(start_pose, end_pose, lambda)` que, a partir de una pose inicial y final, calcule una pose intermedia entre estas en función del parámetro $\lambda$: Indica cuánto ha avanzado el movimiento: Será "0" para el incio y "1" para el final de este.
 
 ### Fundamentos teóricos
 
@@ -50,7 +50,7 @@ $$
 
 2) Cálculo de la orientación:
 
-Análogamente, se procede a extraer las matrices de orientación de las poses iniciales y finales desde sus matrices de transformación homogénea
+Análogamente, se procede a extraer las matrices de orientación de las poses iniciales y finales desde las mismas matrices:
 
 $$
 R_0 =
@@ -184,7 +184,7 @@ Se trata de la comprobación de la función, devolviendo las tres poses original
     · 0 -> 1
     · 1 -> 2
 
-En ambos se repite la pose intermedia y se introducen los valores de $\lambda$ "1" para el primer trayecto y "0" para el segundo, provocando que ambas líneas devuelvan las mismas poses (Ver el siguiente código).
+En ambos se repite la pose intermedia y se introducen los valores de $\lambda=1$ para el primer trayecto y  $\lambda=0$ para el segundo, provocando que ambas líneas devuelvan las mismas poses (Ver el siguiente código).
 
 ```cpp
 const auto [p0, q0] = PoseInterpolation(pose0, pose1, 0.0);
@@ -199,7 +199,7 @@ const auto [p3, q3] = PoseInterpolation(pose1, pose2, 1.0);
 
 ### Fundamentos teóricos
 
-Una trayectoria suave (entre dos puntos) es un tipo de trayectoria en la que el movimiento cambia de forma continua, evitando saltos bruscos en posición, velocidad u orientación, apoyándose en un punto intermedio. Para ello, se divide la trayectoria en tres tramos:
+Una trayectoria suave (entre dos puntos) es un tipo de trayectoria en la que el movimiento cambia de forma continua, evitando saltos bruscos en posición, velocidad u orientación (y así evitando una aceleración instantánea infinita), apoyándose en un punto intermedio. Para ello, se divide la trayectoria en tres tramos:
 
 ![Resultado de la tarea 1.](images/teoria.png)
 
@@ -207,9 +207,9 @@ Una trayectoria suave (entre dos puntos) es un tipo de trayectoria en la que el 
 
 - $t > \tau$ : Segundo tramo lineal entre $pose_1$ y $pose_2$. Se realiza la interpolación de poses con $\lambda = t/T$.
 
--**NOTA**: El parámetro $\lambda$ sigue las anteriores expresiones para garantizar que al principio del recorrido su valor sea "0" (t = -T) y al final del mismo sea "1" (t = T).
+-**NOTA**: El parámetro $\lambda$ sigue las anteriores expresiones para garantizar que al principio del recorrido sea $\lambda = 0$ ($t = -T$) y al final del mismo $\lambda = 1$ ($t = T$).
 
-- $-\tau \leq t \leq \tau$ : Región de suavizado alrededor de la pose intermedia. En este procedimiento, la orientación se calcula a partir de la orientación intermedia $q_1$, aplicando dos rotaciones parciales. La primera tiene en cuenta la orientación del tramo anterior, mientras que la segunda incorpora progresivamente la orientación del tramo siguiente. De esta forma, se evita un cambio brusco de orientación en la pose intermedia. Se procede a desarrollar este algoritmo:
+- $-\tau \leq t \leq \tau$ : Región de suavizado alrededor del punto intermedio del camino. En este procedimiento, la orientación se calcula a partir de la orientación intermedia $q_1$, aplicando dos rotaciones parciales. La primera tiene en cuenta la orientación del tramo anterior, mientras que la segunda incorpora progresivamente la orientación del tramo siguiente. De esta forma, se evita un cambio brusco de orientación en la pose intermedia. Se procede a desarrollar este algoritmo:
 
 En primer lugar, se procede al estudio de la orientación. Para ello, se extraen las rotaciones de cada matriz de transformación homogénea, se transforman a cuaternios, se calculan cuaternios inversos de los dos primeros y los cuaternios relativos $q_0$ y $q_1$. Además, se extrae el eje y ángulo de estos últimos (Procedimientos análogos a los del primer ejercicio del informe).
 
