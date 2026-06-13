@@ -378,30 +378,30 @@ Se procede a cambiar los siguientes parámetros para estudiar su influencia en e
 #### Posición y Orientación con τ = 1 ; T = 10
 <p>
   <a href="images/tau1t10_pos.png">
-    <img src="images/tau1t10_pos.png" width="45%">
+    <img src="images/tau1t10_pos.png" width="70%">
   </a>
   <a href="images/tau1t10_or.png">
-    <img src="images/tau1t10_or.png" width="45%">
+    <img src="images/tau1t10_or.png" width="70%">
   </a>
 </p>
 
 #### Posición y Orientación con τ = 10 ; T = 10
 <p>
   <a href="images/tau10t10_pos.png">
-    <img src="images/tau10t10_pos.png" width="45%">
+    <img src="images/tau10t10_pos.png" width="70%">
   </a>
   <a href="images/tau10t10_or.png">
-    <img src="images/tau10t10_or.png" width="45%">
+    <img src="images/tau10t10_or.png" width="70%">
   </a>
 </p>
 
 #### Posición y Orientación con τ = 10 ; T = 100
 <p>
   <a href="images/tau10t100_pos.png">
-    <img src="images/tau10t100_pos.png" width="45%">
+    <img src="images/tau10t100_pos.png" width="70%">
   </a>
   <a href="images/tau10t100_or.png">
-    <img src="images/tau10t100_or.png" width="45%">
+    <img src="images/tau10t100_or.png" width="70%">
   </a>
 </p>
 
